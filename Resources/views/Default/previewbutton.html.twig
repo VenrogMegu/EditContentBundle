@@ -1,0 +1,11 @@
+
+
+{% if preview  %}
+
+    <a href="{{ path('validateeditionpage') }}"><button type="button" name="button">valider</button></a>
+    <a href="{{ path( app.session.get('origin-page'), {'edit': 'edit'})}}"><button type="button" name="button">annuler</button></a>
+  
+
+{% endif %}
+
+

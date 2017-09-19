@@ -1,0 +1,38 @@
+{% set keys = app.request.get('_route_params')|keys| join(',') %}
+{% set values = app.request.get('_route_params')| join(',') %}
+{% if is_granted('ROLE_ADMIN') %}
+  <div class="margin-top-admin"></div>
+  <div id="bar_admin">
+      <nav class="navbar navbar-inverse navbar-fixed-top navbar-admin">
+        <div class="container-fluid">
+        {% if not preview  %}
+            <a href="{{ path('fos_user_security_logout') }}">
+              <button class="btn btn-danger navbar-btn btn-sm">Déconnecter</button>
+            </a>
+              <!-- Bouton passer en mode édition -->
+              <a href="{{ path('switchedit', {
+                currentRoute : app.request.get('_route'),
+                currentKey: keys,
+                currentValue: values,
+                isEdit : edit ? 1 : 0,
+              }) }}">
+              <button type="button" class="btn navbar-btn btn-info btn-sm {% if edit == 'edit' %}active{% endif %}">
+                {% if edit %}Sortir du mode édition{% else %}Passer en mode édition{% endif %}</button></a>
+                <!-- Bouton ajouter une actu -->
+                <a href="{{ path('actu_new') }}">
+                    <button class="btn btn-success btn-sm btn-add-new" type="button" name="button">Créer une nouvelle actualité</button>
+                </a>
+
+              <span class="text-bar-admin pull-right">Bienvenue, {{app.user.username}}<i class="fa fa-circle greenFa" aria-hidden="true"></i>{{ "now" | localizeddate('none', 'none', app.request.locale, "Europe/Paris", "ccc d MMM Y") }}</span>
+
+
+        {% elseif not edit and preview %}
+          <a href="{{ path('validateEditionpage', { "valid": 1 }) }}"><button type="button" class="btn btn-success navbar-btn">valider</button></a>
+          <a href="{{ path('validateEditionpage', { "valid": 0 }) }}"><button type="button" class="btn btn-default navbar-btn" >annuler</button></a>
+        {% endif %}
+        </div>
+      </nav>
+  </div>
+{% endif %}
+
+<!-- Bouton qui appelle une action -->

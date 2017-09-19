@@ -1,0 +1,11 @@
+
+  {% extends 'base_admin.html.twig' %}
+    {% block body %}
+            <div class="container">
+              <div class="form-cont" >
+                {{ form_start(editform) }}
+                {{ form_widget(editform) }}
+                {{ form_end(editform) }}
+              </div>
+          </div>
+    {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('setlocale', {'language': 'fr'}) }}">FR</a>
+    <a href="{{ path('setlocale', {'language': 'en'}) }}">EN</a>
+    {{ include('TgcEditContentBundle:Default:validateTextEdit.html.twig') }}
+    <div class="container">
+        <h1>
+            {{ include('TgcEditContentBundle:Default:textEditable.html.twig', { 'content': presentationTitre }) }}
+        </h1>
+
+
+    </div>
+
+
+
+{% endblock body %}

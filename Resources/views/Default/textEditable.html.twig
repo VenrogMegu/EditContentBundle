@@ -1,0 +1,13 @@
+
+
+  {% if content %}
+
+    {{ content.text }}
+
+    {% if edit %}
+        <a class="link_edit" href="{{ path('edittextpage', { "slug": content.slug }) }}"  title="modifier" >
+          <span class="fa fa-edit" ></span>
+        </a>
+    {% endif %}
+
+  {% endif %}

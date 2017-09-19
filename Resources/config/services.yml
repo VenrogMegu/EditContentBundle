@@ -1,0 +1,4 @@
+services:
+    edit_content:
+         class: Tgc\EditContentBundle\Service\EditContent
+         arguments: ["@session","@doctrine.orm.default_entity_manager", "@tgc_cache"]
